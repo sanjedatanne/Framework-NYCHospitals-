@@ -20,7 +20,7 @@ public class HomePageTest extends Base {
 		homePage.logoDisplayed();
 	}
 
-	@Test (enabled = true)
+	@Test (enabled = false)
 	public void  logoDisplayed02 () {
 		WebElement logoElement = driver.findElement(By.xpath("//a[@class= 'logo']"));
 		boolean flag = logoElement.isDisplayed();
@@ -31,7 +31,7 @@ public class HomePageTest extends Base {
 	public void  logoDisplayed04 () {
 		WebElement logoElement = driver.findElement(By.xpath("//a[@class= 'logo']"));
 		boolean flag = logoElement.isDisplayed();
-		Assert.assertTrue(false, "Application Logo is not displayed"); // error message will be shown, expect (true) but found false.
+		Assert.assertFalse(false, "Application Logo is not displayed"); //Passed no error message is shown
 	}
 	
 	@Test (enabled = false)
@@ -79,6 +79,27 @@ public class HomePageTest extends Base {
 	public void getTitle() {
 		System.out.println("The title of the Page is: " + driver.getTitle());
 	}
+	
+	@Test(enabled = true)
+	public void use_of_getTitle_method_with_assertion01() {
+		String expected = "NYC Health + Hospitals - public health care system in the US";
+  		String actual = driver.getTitle();
+  		System.out.println("Home Page Title is: "+actual);
+  		Assert.assertEquals(actual, expected, "Home Page Title doesn't match ...");
+  		String currentURL =	driver.getCurrentUrl();
+		System.out.println("The current url from priority 1 is: " + currentURL); //passed and matched correct
+	}
+	
+	@Test(enabled = false)
+	public void use_of_getTitle_method_with_assertion02() {
+		String expected = "NYC Health + Hospitals";
+  		String actual = driver.getTitle();
+  		System.out.println("Home Page Title is: "+actual);
+  		Assert.assertEquals(actual, expected, "Home Page Title doesn't match ...");
+  		String currentURL =	driver.getCurrentUrl();
+		System.out.println("The current url from priority 2 is: " + currentURL); // error message because it does not match
+	}
+	
 	@Test(enabled = false)
 	public void getAttribute() {
 		String value01 = driver.findElement(By.xpath("[//a[contains(text(), 'About NYC Health']")).getAttribute("title");

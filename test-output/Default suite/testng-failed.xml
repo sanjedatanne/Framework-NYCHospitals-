@@ -5,7 +5,7 @@
     <classes>
       <class name="pages.HomePageTest">
         <methods>
-          <include name="logoDisplayed04"/>
+          <include name="use_of_getTitle_method_with_assertion02"/>
           <include name="tearUp"/>
           <include name="setUp"/>
         </methods>
